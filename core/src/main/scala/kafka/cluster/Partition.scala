@@ -479,6 +479,7 @@ class Partition(val topic: String,
       trace("ISR updated to [%s] and zkVersion updated to [%d]".format(newIsr.mkString(","), zkVersion))
     } else {
       info("Cached zkVersion [%d] not equal to that in zookeeper, skip updating ISR".format(zkVersion))
+      zkVersion = asyncUpdateTopicPartitionVersion(topic,partitionId)
     }
   }
 
